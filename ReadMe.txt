@@ -51,6 +51,7 @@ STYLING/SCRIPTING
     Controller loads a view, it will look in the js and css folders for 
     files with the same name as the view. If they exist, the Controller 
     will generate the link and reference tags to them.
+    The universal styles and scripts are named site.css and site.js.
 
 3RD-PARTY CLIENT-SIDE LIBRARIES
     These area loaded from the /static/resources folder. The Controller
