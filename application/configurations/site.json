@@ -1,0 +1,59 @@
+
+{
+    "developer" : {
+        "name"  : "Paul Antonio",
+        "email" : "paul.antonio2017@gmail.com",
+        "repo"  : ""
+    },
+
+    "database" : {
+        "default" : {
+            "hostname" : "sandbox",
+            "username" : "root",
+            "password" : "root",
+            "name"     : "PHP_Dev",
+            "port"     : "3306",
+            "socket"   : "/var/run/mysqld/mysqld.sock"
+        }
+    },
+
+    "folderpath" : {
+        "application"    : "application/",
+        "controllers"    : "application/controllers/",
+        "models"         : "application/models/",
+        "views"          : "application/views/",
+        "assets"         : "static/assets/",
+        "images"         : "static/assets/images/",
+        "templates"      : "static/html/",
+        "stylesheets"    : "static/css/",
+        "scripts"        : "static/js/",
+        "resources"      : "static/resources/",
+        "configurations" : "application/configurations/"
+    },
+
+    "filepath" : {
+        "routes" : "routes.php"
+    },
+
+    "classfolderpathkeys" : [
+        "controllers",
+        "models"
+    ],
+
+    "mvcfolderpathkeys" : [
+        "models",
+        "views",
+        "controllers"
+    ],
+
+    "globallyAvailableClassFiles" : [
+        "Utility"
+    ],
+
+    "staticfolderpathkeys" : [
+        "assets",
+        "templates",
+        "stylesheets",
+        "scripts"
+    ]    
+}

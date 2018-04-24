@@ -1,0 +1,73 @@
+#page-header p {
+    margin: 0;
+}
+
+#testCountContainer {
+    font-size: small;
+}
+
+#testCountContainer > span {
+    font-weight: bold;
+    color: #0857b9;
+}
+
+.UnitTestButton {
+    padding: 5px 10px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #aaa;
+}
+
+.UnitTestButton:hover {
+    box-shadow: 0 0 15px #0857b9;
+}
+
+#btnShowSuccessfulTests {
+    margin: 10px auto;
+}
+
+.unitTestDescription {
+    color: gray;
+    font-style: italic;
+    font-weight: lighter;
+    font-size: 18px;
+}
+
+.failed-test h4 {
+    background-color: #af160b;
+    border-color: #632020;
+    color: #fff;
+}
+
+.incompleted-test h4 {
+    background-color: #f57900;
+    border-color: #8e4600;
+    color: #fff;
+}
+
+.incompleted-test h4::after { 
+    content: " - Test failed to complete";
+}
+
+.unitTestOutput {
+    padding: 5px 15px;
+    background-color: #eee;
+    font-size: 10px;
+}
+
+span.code-output {
+    font-family: Courier;
+}
+
+span.error-message {
+    color: red;
+}
+
+span.success-message {
+    color: green;
+}
+
+span.warning-message {
+    color: orange;
+}
