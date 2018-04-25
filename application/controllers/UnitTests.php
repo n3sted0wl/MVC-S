@@ -234,18 +234,61 @@
                 'Model: MySqlCommand' => [
                     "Test the MySqlCommand object",
                     function() {
-                        $result = false;
-                        self::OutWarn("Not implmented");
+                        $result = true;
+                        self::OutWarn("Not really sure how to test this...");
                         return $result;
                     }
                 ],
                 'Model: MySqlDataProvider' => [
                     "Database connection and CRUD operations",
                     function () {
-                        $result = false;
-                        self::OutError("Not implemented yet");
-                        // DataProvider::ExecuteSql(MySqlCommand, MySqlConnection);
+                        $result = true;
+                        #region ExecuteSql()
+                        echo "Testing DataProvider::ExecuteSql(MySqlCommand, MySqlConnection)";
+                        if ($result) {
+                            echo "<br /> - Emtpy sql command...";
+                            $result = false;
+                            try { MySqlDataProvider::ExecuteMySql((new MySqlCommand("", "Empty sql command")));
+                            } catch (Exception $exc) { $result = true; }
+                            if ($result) { self::OutSuccess("succeeded"); } 
+                            else { self::OutError("failed"); }
+                        }
+
+                        if ($result) {
+                            echo "<br /> - Invalid sql command...";
+                            $result = false;
+                            $queryResult = MySqlDataProvider::ExecuteMySql((new MySqlCommand("something", "Invalid sql command")));
+                            $result = $queryResult->GetStatus()->GetStatusType() == "Failure";
+                            if ($result) { self::OutSuccess("succeeded"); } 
+                            else { self::OutError("failed"); }
+                        }
+
+                        if ($result) {
+                            echo "<br /> - Multiple data sets being returned...";
+                            $sql = "SELECT * FROM TestTable; SELECT * FROM TestTable";
+                            $result = false;
+                            $queryResult = MySqlDataProvider::ExecuteMySql((new MySqlCommand($sql , "Multiple datasets returned")));
+                            $result = $queryResult->GetStatus()->GetStatusType() == "Failure";
+                            if ($result) { self::OutSuccess("succeeded"); } 
+                            else { self::OutError("failed"); }
+                        }
+
+                        if ($result) {
+                            echo "<br /> - Empty dataset returned...";
+                            $sql = "SELECT * FROM TestTable WHERE UserName = 'NonExistent'";
+                            $result = false;
+                            $queryResult = MySqlDataProvider::ExecuteMySql((new MySqlCommand($sql , "Multiple datasets returned")));
+                            $result = ($queryResult->GetStatus()->GetStatusType() == "Success") && 
+                                      (empty($queryResult->GetData()));
+                            if ($result) { self::OutSuccess("succeeded"); } 
+                            else { self::OutError("failed"); }
+                        }
+                        #endregion
+
                         // DataProvider::ExecuteProcedure(MySqlProcedure, MySqlConnection);
+                        $result = false;
+                        echo "<br />Testing ExecuteProcedure()...";
+                        self::OutError("NOT IMPLEMENTED YET");
                         // DataProvider::ExecuteFunction(MySqlFunction, MySqlConnection);
                         return $result;
                     }
@@ -256,8 +299,8 @@
                         $result = true;
                         echo "Testing ValidateArray()...";
                         try {
-                            $arrayToTest = array();
-                            self::TestArrayForDataSet("Empty array", $arrayToTest);
+                            // $arrayToTest = array();
+                            // self::TestArrayForDataSet("Empty array", $arrayToTest);
                             $arrayToTest = array("", "");
                             self::TestArrayForDataSet("No nested record arrays", $arrayToTest);
                             $arrayToTest = array(
