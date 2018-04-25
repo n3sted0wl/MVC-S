@@ -7,10 +7,12 @@
             $this->SetCommand($command);
         }
 
+        /** Get the SQL command as a string */
         public function GetCommand() : string {
             return $this->_sqlCommand;
         }
 
+        /** Set the SQL command string */
         public function SetCommand(string $command) {
             $this->_sqlCommand = $command;
         }
