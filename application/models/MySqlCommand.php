@@ -6,7 +6,7 @@
 
         public function __construct(string $command, string $description) {
             $this->SetCommand($command);
-            $this->SetDescrpiption($description);
+            $this->SetDescription($description);
         }
 
         /** Get the SQL command as a string */
