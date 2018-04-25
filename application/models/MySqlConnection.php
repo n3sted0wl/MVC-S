@@ -27,7 +27,7 @@
         }
 
         /** Get the database connection specified in the configuration file */
-        public static function GetConnection(string $configurationName) {
+        public static function GetConnection(string $configurationName) : MySqlConnection {
             set_error_handler(function() {
                 throw new Exception("ERROR: Could not find the connection configuration settings");
             });
