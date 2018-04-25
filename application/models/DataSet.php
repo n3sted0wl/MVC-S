@@ -36,7 +36,6 @@
                 foreach ($data as $record) { 
                     if (!is_array($record)) { throw new Exception("Each record must be an array"); }
                     $currentRecordFields = array_keys($record);
-
                     if ($isFirstRecord) {
                         $isFirstRecord = false;
                     } else {
@@ -44,13 +43,11 @@
                         if (count($previousRecordFields) != count($currentRecordFields))  {
                             throw new Exception("Records are of inconsistent size");
                         }
-
                         // Check for consistent record fields
                         if ($previousRecordFields !== $currentRecordFields) {
                             throw new Exception ("Record fields are inconsistent");
                         }
                     }
-
                     // Make sure all the values are strings
                     foreach ($record as $fieldName => $fieldValue) {
                         if (!is_string($fieldValue)) {
