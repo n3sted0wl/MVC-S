@@ -26,6 +26,14 @@
             $this->_socket = $socket;
         }
 
+        public function GetMySqli() : mysqli {
+            if (!$this->IsValid()) {
+                throw new Exception("Could not get mysqli object of current connection");
+            }
+            return new mysqli($this->_host, $this->_username, $this->_password, 
+                $this->_databaseName, $this->_port, $this->_socket);
+        }
+
         /** Get the database connection specified in the configuration file */
         public static function GetConnection(string $configurationName) {
             set_error_handler(function() {
