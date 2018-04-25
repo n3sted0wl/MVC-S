@@ -286,10 +286,14 @@
                         #endregion
 
                         // DataProvider::ExecuteProcedure(MySqlProcedure, MySqlConnection);
-                        $result = false;
+                        $result = null;
                         echo "<br />Testing ExecuteProcedure()...";
                         self::OutError("NOT IMPLEMENTED YET");
                         // DataProvider::ExecuteFunction(MySqlFunction, MySqlConnection);
+                        $result = null;
+                        echo "<br />Testing ExecuteFunction()...";
+                        self::OutError("NOT IMPLEMENTED YET");
+
                         return $result;
                     }
                 ],
