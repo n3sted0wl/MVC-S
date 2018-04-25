@@ -11,6 +11,11 @@
             }
         }
 
+        /** Get the array of data */
+        public function GetDataArray() : array {
+            return $this->_data;
+        }
+
         /** Get the headers array of this dataset */
         public function GetHeaders() : array {
             $headers = array_keys(reset($this->_data));
@@ -30,7 +35,7 @@
             $statusType = "Success";
             $statusMessage = "This array can be used for creating a dataset";
             try {
-                if (empty($data)) { throw new Exception("DataSet cannot be empty"); }
+                // if (empty($data)) { throw new Exception("DataSet cannot be empty"); }
                 $isFirstRecord = true; 
                 $previousRecordFields = array();
                 foreach ($data as $record) { 
