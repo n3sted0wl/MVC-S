@@ -68,6 +68,10 @@ span.success-message {
     color: green;
 }
 
+span.incomplete-message {
+    color: #f57900;
+}
+
 span.warning-message {
     color: orange;
 }
