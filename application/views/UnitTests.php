@@ -43,10 +43,12 @@
             echo "</div>";
 
             echo "<div class='unitTestResult'>Test Result: ";
-            if ($result) {
+            if ($result === true) {
                 echo "<span class='success-message'>Succeeded<span>";
-            } else {
+            } else if ($result === false) {
                 echo "<span class='error-message'>Failed</span>";
+            } else if (is_null($result)) {
+                echo "<span class='incomplete-message'>Incomplete</span>";
             }
             echo "</div></div></div>";
         }    
