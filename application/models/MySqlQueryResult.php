@@ -20,8 +20,8 @@
         }
 
         /** Get the DataSet the query returned */
-        public function GetDataSet() : DataSet {
-            return $this->dataSet;
+        public function GetData() : array {
+            return $this->_dataSet->GetDataArray();
         }
         
         /** Set the DataSet the query returned; Only called by the constructor */
