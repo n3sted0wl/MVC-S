@@ -11,6 +11,11 @@
             }
         }
 
+        /** Get the array of data */
+        public function GetDataArray() : array {
+            return $this->_data;
+        }
+
         /** Get the headers array of this dataset */
         public function GetHeaders() : array {
             $headers = array_keys(reset($this->_data));
@@ -30,13 +35,12 @@
             $statusType = "Success";
             $statusMessage = "This array can be used for creating a dataset";
             try {
-                if (empty($data)) { throw new Exception("DataSet cannot be empty"); }
+                // if (empty($data)) { throw new Exception("DataSet cannot be empty"); }
                 $isFirstRecord = true; 
                 $previousRecordFields = array();
                 foreach ($data as $record) { 
                     if (!is_array($record)) { throw new Exception("Each record must be an array"); }
                     $currentRecordFields = array_keys($record);
-
                     if ($isFirstRecord) {
                         $isFirstRecord = false;
                     } else {
@@ -44,13 +48,11 @@
                         if (count($previousRecordFields) != count($currentRecordFields))  {
                             throw new Exception("Records are of inconsistent size");
                         }
-
                         // Check for consistent record fields
                         if ($previousRecordFields !== $currentRecordFields) {
                             throw new Exception ("Record fields are inconsistent");
                         }
                     }
-
                     // Make sure all the values are strings
                     foreach ($record as $fieldName => $fieldValue) {
                         if (!is_string($fieldValue)) {

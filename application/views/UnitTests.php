@@ -35,20 +35,21 @@
             echo "<h4 class='unitTestTitle' style='margin: 0;'>{$unitTestKey}</h4>";
             echo "<div>";
             echo "<div class='unitTestDescription'>Summary: "
-                    .$unitTests[$unitTestKey][0]
-                    ."</div>";
+                    .$unitTests[$unitTestKey][0]."</div>";
             echo "<div class='unitTestOutput'>";
             echo "<span style='font-weight: bold;'>Test Output:</span><br />";
             $result = call_user_func($unitTests[$unitTestKey][1]);
             echo "</div>";
 
             echo "<div class='unitTestResult'>Test Result: ";
-            if ($result) {
+            if ($result === true) {
                 echo "<span class='success-message'>Succeeded<span>";
-            } else {
+            } else if ($result === false) {
                 echo "<span class='error-message'>Failed</span>";
+            } else if (is_null($result)) {
+                echo "<span class='incomplete-message'>Incomplete</span>";
             }
             echo "</div></div></div>";
-        }    
+        }
     ?>
 </div>

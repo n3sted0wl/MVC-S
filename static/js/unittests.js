@@ -35,6 +35,8 @@ $(document).ready(function() {
             }
         });
     });
+    expandAllSections();
+    hideSuccessfulTests();
 
     // Set Counts
     $('#spSuccessfulCount').text($('.unitTestRepeater.successful-test').length);

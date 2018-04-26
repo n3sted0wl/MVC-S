@@ -8,6 +8,7 @@
         private $_port;
         private $_databaseName;
         private $_socket;
+        private $_charset;
 
         public function __construct(
             string $confName,
@@ -16,7 +17,8 @@
             string $password,
             string $dbName,
             string $port,
-            string $socket) {
+            string $socket,
+            string $charset) {
             $this->_configurationName = $confName;
             $this->_host = $host;
             $this->_username = $username;
@@ -24,12 +26,23 @@
             $this->_databaseName = $dbName;
             $this->_port = intval($port);
             $this->_socket = $socket;
+            $this->_charset = $charset;
+        }
+
+        public function GetMySqli() : mysqli {
+            if (!$this->IsValid()) {
+                throw new Exception("Could not get mysqli object of current connection");
+            }
+            $newSqli = new mysqli($this->_host, $this->_username, $this->_password, 
+            $this->_databaseName, $this->_port, $this->_socket);
+            $newSqli->set_charset($this->_charset);
+            return $newSqli;
         }
 
         /** Get the database connection specified in the configuration file */
         public static function GetConnection(string $configurationName) {
-            set_error_handler(function() {
-                throw new Exception("ERROR: Could not find the connection configuration settings");
+            set_error_handler(function($errorNumber, $errorMessage) {
+                throw new Exception("$errorMessage");
             });
             try {
                 $defaultConnectionSettings = $GLOBALS[CONFIG]["database"][$configurationName];
@@ -40,7 +53,8 @@
                     $defaultConnectionSettings["password"], 
                     $defaultConnectionSettings["name"], 
                     intval($defaultConnectionSettings["port"]), 
-                    $defaultConnectionSettings["socket"]
+                    $defaultConnectionSettings["socket"],
+                    $defaultConnectionSettings["charset"] 
                 );
                 if (! ($newConnection)->IsValid() ) {
                     throw new Exception("Could not get connection with name {$configuraitonName}");
