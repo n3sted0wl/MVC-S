@@ -13,7 +13,8 @@
             "password" : "root",
             "name"     : "PHP_Dev",
             "port"     : "3306",
-            "socket"   : "/var/run/mysqld/mysqld.sock"
+            "socket"   : "/var/run/mysqld/mysqld.sock",
+            "charset"  : "utf8"
         }
     },
 
