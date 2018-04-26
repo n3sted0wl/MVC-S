@@ -22,7 +22,7 @@
                 default:
                     // Default for when a serviceName is not specified
                     $serviceResult["status"] = "Error";
-                    $serviceResult["message"] = "No requested service";
+                    $serviceResult["message"] = "Unrecognized service requested";
                     break;
             }
 
