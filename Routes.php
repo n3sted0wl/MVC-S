@@ -1,10 +1,12 @@
 
 <?php
     // Define routes that the master page executes on page load
-    Route::Set("dev" , function() { Dev::RenderView("dev"); });
     Route::Set("dev", function() { Dev::RenderView("dev"); });
     Route::Set("UnitTests", function() { UnitTests::RenderView("UnitTests"); });
     Route::Set("Services", function() { Services::CallService(); } );
+
+    // Route::Set("index.php", function() { Home::RenderView("Home"); });
+    Route::Set("DevInfo", function() { DevInfo::RenderView("DevInfo"); });
 ?>
 
 <?php

@@ -1,0 +1,13 @@
+#dev-info-page-heading {
+    padding: 30px 50px;
+    text-align: center;
+}
+
+#dev-info-page-welcome-container p {
+    color: #aaa;
+    font-weight: lighter;
+}
+
+#dev-info-page-navigation-container > div {
+    margin: 0 5px;
+}
