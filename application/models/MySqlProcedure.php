@@ -10,7 +10,7 @@
 
         /** Set the name of the procedure to be called */
         private function SetProcedureName(string $procedureName) {
-            if (!MySqlDataProvider::FunctionOrProcedureExists($procedureName)) {
+            if (!MySqlDataProvider::ProcedureExists($procedureName)) {
                 throw new Exception("Procedure named {$procedureName} does not exist");
             }
             $this->_procedureName = $procedureName;
@@ -31,7 +31,9 @@
         }
 
         /** Get the array of parameters used in this procedure call */
-        public function GetParameters() { return (is_null($this->_parameters) ? null : $this->_parameters ); }
+        public function GetParameters() { 
+            return (is_null($this->_parameters) ? null : $this->_parameters ); 
+        }
 
         /** Validate the list of parameters */
         private function ValidateParameterList(array $parameters) : bool {

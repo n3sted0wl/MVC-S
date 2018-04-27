@@ -19,6 +19,11 @@
         }
     });
 
+    // Set up Exception Handling
+    set_error_handler(function($errorNumber, $errorMessage) {
+        throw new Exception("$errorMessage");
+    });
+
     // Load routes
     require_once($GLOBALS[CONFIG]["filepath"]["routes"]);
 ?>
