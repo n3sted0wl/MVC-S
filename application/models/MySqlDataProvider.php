@@ -48,7 +48,7 @@
         }
 
         /** Check if a procedure or function is defined in the database */
-        public static function FunctionOrProcedureExists(
+        public static function ProcedureExists(
             string $name, string $databaseName="PHP_Dev") : bool {
             $query = "SELECT COUNT(*) AS found
                         FROM information_schema.routines
@@ -83,7 +83,7 @@
                 $parameterList = rtrim($parameterList, ", ");
             }
 
-            // Set the call procedure
+            // Set the procedure call
             $sqlString .= "CALL {$procedure->GetProcedureName()}(".$parameterList.");";
 
             // Call the procedure
@@ -101,19 +101,12 @@
                 $returnedDataSet = $resultOfSql->GetData();
             }
 
+            // Return the result
             return (new MySqlQueryResult(
                 (new Status($statusType, $statusDescription)), 
                 (new DataSet($returnedDataSet))
             ));
 
-        }
-
-        /** Execute a MySql function and return the results;
-         * If no connection is specified, the default configuration is used */
-        public static function ExecuteFunction(
-            MySqlFunction $function, 
-            MySqlConnection $connection=null) : MySqlQueryResult {
-            $mySqlConnection = self::SetUpConnection($connection);
         }
 
         /** Get a connection based off the settings in the configuration file */
