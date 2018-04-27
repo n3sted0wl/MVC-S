@@ -70,16 +70,18 @@
 
             $mySqlConnection = self::SetUpConnection($connection);
             $sqlString = "";
+            $parameterList = "";
 
             // Assemble the parameters
             if (!is_null($procedure->GetParameters())) {
-                foreach ($procedure->GetParameters() as $paramName => $paramValue) {
-                    $sqlString .= "SET @{$paramName} = '{$paramValue}'; ";
-                }    
+                foreach ($procedure->GetParameters() as $paramValue) {
+                    $parameterList .= "{$paramValue}, ";
+                }
+                $parameterList = rtrim($parameterList, ", ");
             }
 
             // Set the call procedure
-            $sqlString .= "CALL {$procedure->GetProcedureName()}();";
+            $sqlString .= "CALL {$procedure->GetProcedureName()}(".$parameterList.");";
 
             // Call the procedure
             $sqlToExecute = new MySqlCommand($sqlString, 

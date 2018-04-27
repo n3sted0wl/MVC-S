@@ -36,9 +36,9 @@
         /** Validate the list of parameters */
         private function ValidateParameterList(array $parameters) : bool {
             $result = true;
-            // Array must be associative and two-dimensional
+            // Array must be one dimentional
             foreach ($parameters as $key => $value) {
-                if (!is_string($key) || !is_string($value)) {
+                if (is_array($value)) {
                     $result = false;
                     break;
                 }
