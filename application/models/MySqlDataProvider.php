@@ -25,7 +25,8 @@
             if ($querySucceeded === false) { 
                 $resultDataSet = array();
                 $resultStatusType = "Failure";
-                $resultStatusDescription = "SQL Execution Error{(empty($mySqli->error)) ? '' : ': $mySqli->error'}";
+                $resultStatusDescription = 
+                    "SQL Execution Error{(empty($mySqli->error)) ? '' : ': $mySqli->error'}";
             } else { // Query executed successfully; Get the dataset
                 $multiQueryDataSet = array();
                 do {
@@ -47,13 +48,15 @@
         }
 
         /** Check if a procedure or function is defined in the database */
-        public static function FunctionOrProcedureExists(
+        public static function ProcedureExists(
             string $name, string $databaseName="PHP_Dev") : bool {
             $query = "SELECT COUNT(*) AS found
                         FROM information_schema.routines
                        WHERE routine_schema = '{$databaseName}'
                          AND routine_name = '{$name}';";
-            $queryResult = self::ExecuteMySql((new MySqlCommand($query, "Checking if {$name} exists")));
+            $queryResult = self::ExecuteMySql(
+                (new MySqlCommand($query, "Checking if {$name} exists"))
+            );
             $data = $queryResult->GetData();
             return $data[0]["found"] == 1;
         }
@@ -65,19 +68,23 @@
             MySqlConnection $connection=null) : MySqlQueryResult {
             // Set up the function return object data
             $statusType = "Success";
-            $statusDescription = "Procedure {$procedure->GetProcedureName()} executed successfully";
+            $statusDescription = "{$procedure->GetProcedureName()} executed successfully";
             $returnedDataSet = array();
 
             $mySqlConnection = self::SetUpConnection($connection);
             $sqlString = "";
+            $parameterList = "";
 
             // Assemble the parameters
-            foreach ($procedure->GetParameters() as $paramName => $paramValue) {
-                $sqlString .= "SET @{$paramName} = '{$paramValue}'; ";
+            if (!is_null($procedure->GetParameters())) {
+                foreach ($procedure->GetParameters() as $paramValue) {
+                    $parameterList .= "{$paramValue}, ";
+                }
+                $parameterList = rtrim($parameterList, ", ");
             }
 
-            // Set the call procedure
-            $sqlString .= "CALL {$procedure->GetProcedureName()}();";
+            // Set the procedure call
+            $sqlString .= "CALL {$procedure->GetProcedureName()}(".$parameterList.");";
 
             // Call the procedure
             $sqlToExecute = new MySqlCommand($sqlString, 
@@ -94,19 +101,12 @@
                 $returnedDataSet = $resultOfSql->GetData();
             }
 
+            // Return the result
             return (new MySqlQueryResult(
                 (new Status($statusType, $statusDescription)), 
                 (new DataSet($returnedDataSet))
             ));
 
-        }
-
-        /** Execute a MySql function and return the results;
-         * If no connection is specified, the default configuration is used */
-        public static function ExecuteFunction(
-            MySqlFunction $function, 
-            MySqlConnection $connection=null) : MySqlQueryResult {
-            $mySqlConnection = self::SetUpConnection($connection);
         }
 
         /** Get a connection based off the settings in the configuration file */

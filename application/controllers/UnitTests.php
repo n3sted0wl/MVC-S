@@ -244,7 +244,7 @@
                     function () {
                         $result = true;
                         #region ExecuteSql()
-                        echo "Testing DataProvider::ExecuteSql(MySqlCommand, MySqlConnection)";
+                        echo "Testing MySqlDataProvider::ExecuteSql(MySqlCommand, MySqlConnection)";
                         if ($result) {
                             echo "<br /> - Emtpy sql command...";
                             $result = false;
@@ -264,16 +264,6 @@
                         }
 
                         if ($result) {
-                            echo "<br /> - Multiple data sets being returned...";
-                            $sql = "SELECT * FROM TestTable; SELECT * FROM TestTable";
-                            $result = false;
-                            $queryResult = MySqlDataProvider::ExecuteMySql((new MySqlCommand($sql , "Multiple datasets returned")));
-                            $result = $queryResult->GetStatus()->GetStatusType() == "Failure";
-                            if ($result) { self::OutSuccess("succeeded"); } 
-                            else { self::OutError("failed"); }
-                        }
-
-                        if ($result) {
                             echo "<br /> - Empty dataset returned...";
                             $sql = "SELECT * FROM TestTable WHERE UserName = 'NonExistent'";
                             $result = false;
@@ -285,14 +275,22 @@
                         }
                         #endregion
 
-                        // DataProvider::ExecuteProcedure(MySqlProcedure, MySqlConnection);
-                        $result = null;
-                        echo "<br />Testing ExecuteProcedure()...";
-                        self::OutError("NOT IMPLEMENTED YET");
-                        // DataProvider::ExecuteFunction(MySqlFunction, MySqlConnection);
-                        $result = null;
-                        echo "<br />Testing ExecuteFunction()...";
-                        self::OutError("NOT IMPLEMENTED YET");
+                        #region ExecuteProcedure()
+                        if ($result) {
+                            echo "<br />Testing MySqlDataProvider::ExecuteProcedure()";
+                            echo "<br /> - Calling an undefined procedure...";
+                            $result = false;
+                            try {
+                                $queryResult = MySqlDataProvider::ExecuteProcedure(
+                                    (new MySqlProcedure("This does not exist"))
+                                );
+                            } catch (Exception $exc) {
+                                $result = true;
+                            }
+                            if ($result) { self::OutSuccess("succeeded"); } 
+                            else { self::OutError("failed"); }
+                        }
+                        #endregion
 
                         return $result;
                     }
