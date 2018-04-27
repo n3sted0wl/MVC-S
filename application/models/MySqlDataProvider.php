@@ -25,7 +25,8 @@
             if ($querySucceeded === false) { 
                 $resultDataSet = array();
                 $resultStatusType = "Failure";
-                $resultStatusDescription = "SQL Execution Error{(empty($mySqli->error)) ? '' : ': $mySqli->error'}";
+                $resultStatusDescription = 
+                    "SQL Execution Error{(empty($mySqli->error)) ? '' : ': $mySqli->error'}";
             } else { // Query executed successfully; Get the dataset
                 $multiQueryDataSet = array();
                 do {
@@ -53,7 +54,9 @@
                         FROM information_schema.routines
                        WHERE routine_schema = '{$databaseName}'
                          AND routine_name = '{$name}';";
-            $queryResult = self::ExecuteMySql((new MySqlCommand($query, "Checking if {$name} exists")));
+            $queryResult = self::ExecuteMySql(
+                (new MySqlCommand($query, "Checking if {$name} exists"))
+            );
             $data = $queryResult->GetData();
             return $data[0]["found"] == 1;
         }
@@ -65,7 +68,7 @@
             MySqlConnection $connection=null) : MySqlQueryResult {
             // Set up the function return object data
             $statusType = "Success";
-            $statusDescription = "Procedure {$procedure->GetProcedureName()} executed successfully";
+            $statusDescription = "{$procedure->GetProcedureName()} executed successfully";
             $returnedDataSet = array();
 
             $mySqlConnection = self::SetUpConnection($connection);
