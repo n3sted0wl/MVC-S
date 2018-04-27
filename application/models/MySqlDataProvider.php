@@ -72,8 +72,10 @@
             $sqlString = "";
 
             // Assemble the parameters
-            foreach ($procedure->GetParameters() as $paramName => $paramValue) {
-                $sqlString .= "SET @{$paramName} = '{$paramValue}'; ";
+            if (!is_null($procedure->GetParameters())) {
+                foreach ($procedure->GetParameters() as $paramName => $paramValue) {
+                    $sqlString .= "SET @{$paramName} = '{$paramValue}'; ";
+                }    
             }
 
             // Set the call procedure

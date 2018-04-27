@@ -31,7 +31,7 @@
         }
 
         /** Get the array of parameters used in this procedure call */
-        public function GetParameters() : array { return $this->_parameters; }
+        public function GetParameters() { return (is_null($this->_parameters) ? null : $this->_parameters ); }
 
         /** Validate the list of parameters */
         private function ValidateParameterList(array $parameters) : bool {
