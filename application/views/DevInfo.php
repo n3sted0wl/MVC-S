@@ -28,12 +28,3 @@
 <hr />
 <div id="dev-info-page-body">
 </div>
-
-<div id="dev-info-page-footer">
-    <div class="col-xs-12 col-md-4 dev-info-page-footer-section">
-    </div>
-    <div class="col-xs-12 col-md-4 dev-info-page-footer-section">
-    </div>
-    <div class="col-xs-12 col-md-4 dev-info-page-footer-section">
-    </div>
-</div>

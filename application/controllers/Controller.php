@@ -26,6 +26,12 @@
             }
 
             // TODO: Load the Universal Footer like contact information and copyright
+            $filePathForView = $GLOBALS[CONFIG]["folderpath"]["views"].'Footer.php';
+            if (file_exists($filePathForView)) {
+                require_once ($filePathForView); // Executes the associated script in the View folder
+            } else {
+                throw new Exception("Failed to load page footer");
+            }
         }
 
         public static function LoadConfigurationFile($configurationName) {
@@ -78,6 +84,10 @@
             }
 
             $universalStyleSheet = $GLOBALS[CONFIG]["folderpath"]["stylesheets"].'site.css';
+            if (file_exists($universalStyleSheet)) {
+                echo "<link rel='stylesheet' type='text/css' href='/{$universalStyleSheet}'>";
+            }
+            $universalStyleSheet = $GLOBALS[CONFIG]["folderpath"]["stylesheets"].'footer.css';
             if (file_exists($universalStyleSheet)) {
                 echo "<link rel='stylesheet' type='text/css' href='/{$universalStyleSheet}'>";
             }
