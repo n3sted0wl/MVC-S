@@ -41,9 +41,6 @@
 
         /** Get the database connection specified in the configuration file */
         public static function GetConnection(string $configurationName) {
-            set_error_handler(function($errorNumber, $errorMessage) {
-                throw new Exception("$errorMessage");
-            });
             try {
                 $defaultConnectionSettings = $GLOBALS[CONFIG]["database"][$configurationName];
                 $newConnection = new MySqlConnection(
