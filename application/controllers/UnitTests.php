@@ -290,6 +290,38 @@
                             if ($result) { self::OutSuccess("succeeded"); } 
                             else { self::OutError("failed"); }
                         }
+
+                        if ($result) {
+                            echo "<br /> - Calling procedure without parameters...";
+                            try {
+                                $queryResult = MySqlDataProvider::ExecuteProcedure(
+                                    (new MySqlProcedure("SP_GetTestTableData"))
+                                );
+                                if (!$queryResult->GetStatus()->IsSuccessful()) {
+                                    $result = false;
+                                }
+                            } catch (Exception $exc) {
+                                $result = false;
+                            }
+                            if ($result) { self::OutSuccess("succeeded"); } 
+                            else { self::OutError("failed"); }
+                        }
+
+                        if ($result) {
+                            echo "<br /> - Calling procedure with parameters...";
+                            try {
+                                $queryResult = MySqlDataProvider::ExecuteProcedure(
+                                    (new MySqlProcedure("SP_GetFilteredTestTableData", array("3")))
+                                );
+                                if (!$queryResult->GetStatus()->IsSuccessful()) {
+                                    $result = false;
+                                }
+                            } catch (Exception $exc) {
+                                $result = false;
+                            }
+                            if ($result) { self::OutSuccess("succeeded"); } 
+                            else { self::OutError("failed"); }
+                        }
                         #endregion
 
                         return $result;
