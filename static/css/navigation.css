@@ -1,0 +1,35 @@
+nav {
+    z-index: 1;
+    text-align: center;
+    border-bottom: 1px solid #aaaaaa42;
+}
+
+div.nav-item {
+    padding: 0 8px;
+    cursor: pointer;
+    display: inline-block;
+    color: #aaa;
+}
+
+div.nav-item:hover {
+    color: #130592;
+}
+
+div.nav-submenu {
+    display: none;
+    position: absolute;
+    text-align: left;
+    color: #aaa;
+    box-shadow: 0 0 3px #888;
+}
+
+div.nav-submenu-item {
+    padding: 0 3px;
+    background-color: #fff;
+    font-size: smaller;
+}
+
+div.nav-submenu-item:hover {
+    color: #130592;
+    border-bottom: 1px solid #aaa;
+}
