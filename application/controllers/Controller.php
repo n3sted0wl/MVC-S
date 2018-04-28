@@ -7,6 +7,7 @@
             // TODO: Manage Authentication 
 
             // Include globally available classes
+            echo "<head>";
             Controller::LoadUniversalClasses();
 
             // Load scripts and styles
@@ -14,8 +15,10 @@
             Controller::LoadViewScript($viewToRender);
             Controller::LoadUniversalStyles();
             Controller::LoadViewStyle($viewToRender);
+            echo "</head>";
 
             // Load the Universal Header like navigation and stuff
+            echo "<body>";
             if ($GLOBALS[CONFIG]["pageSettings"]["showNavigation"]) {
                 $filePathForView = $GLOBALS[CONFIG]["folderpath"]["views"].'Navigation.php';
                 if (file_exists($filePathForView)) {
@@ -35,13 +38,14 @@
                 throw new Exception("Failed to load view: $viewToRender");
             }
 
-            // TODO: Load the Universal Footer like contact information and copyright
+            // Load the Universal Footer like contact information and copyright
             $filePathForView = $GLOBALS[CONFIG]["folderpath"]["views"].'Footer.php';
             if (file_exists($filePathForView)) {
                 require_once ($filePathForView); 
             } else {
                 throw new Exception("Failed to load page footer");
             }
+            echo "<body>";
         }
 
         public static function LoadConfigurationFile($configurationName) {
