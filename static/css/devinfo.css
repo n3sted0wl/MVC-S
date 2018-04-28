@@ -1,3 +1,7 @@
+span.code {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 #dev-info-page-heading {
     padding: 30px 50px;
     text-align: center;
@@ -10,4 +14,19 @@
 
 #dev-info-page-navigation-container > div {
     margin: 0 5px;
+}
+
+#dev-info-page-body {
+    padding: 15px 45px;
+    overflow-y: scroll;
+    white-space: nowrap;
+}
+
+div.information-section {
+    padding: 0 8px;
+    overflow-y: scroll;
+    width: 390px;
+    height: 500px;
+    display: inline-block;
+    white-space: normal;
 }
