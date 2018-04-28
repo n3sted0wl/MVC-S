@@ -6,6 +6,14 @@
         "repo"  : ""
     },
 
+    "websiteSettings" : {
+        "name" : "MWC-S"
+    },
+
+    "pageSettings" : {
+        "showNavigation" : "true"
+    },
+
     "database" : {
         "default" : {
             "hostname" : "sandbox",
@@ -16,6 +24,27 @@
             "socket"   : "/var/run/mysqld/mysqld.sock",
             "charset"  : "utf8"
         }
+    },
+
+    "navigation": {
+        "Home"    : "/",
+        "About"   : "/About",
+        "Account" : {
+            "Summary"        : "/AccountSummary",
+            "Login/Register" : "/Login"
+        },
+        "Developer Pages" : {
+            "Dev Info"   : "/DevInfo",
+            "Dev Page"   : "/Dev",
+            "Unit Tests" : "/UnitTests"
+        }
+    },
+
+    "authentication" : {
+        "loginurl"   : "login",
+        "groups" : [
+            "anonymous"
+        ]
     },
 
     "folderpath" : {

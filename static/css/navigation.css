@@ -1,0 +1,85 @@
+
+.hidden {
+    display: none;
+}
+
+/* Mobile Version */
+nav {
+    border-bottom: 1px solid #aaa;
+    text-align: center;
+    display: none;
+}
+
+nav a:hover {
+    text-decoration: none;
+}
+
+#mobile-menu-button {
+    cursor: pointer;
+    display: block;
+    margin-top: 8px;
+}
+
+#mobile-menu-button div {
+    width: 20px;
+    height: 3px;
+    background-color: #000;
+    margin: 2px auto;
+}
+
+@media only screen and (min-width: 600px) {
+    /* Tablet Version */
+    #mobile-menu-button {
+        display: none;
+    }
+
+    nav {
+        padding: 8px 0;
+        text-align: left;
+        font-size: smaller;
+        display: block;
+        border-bottom: 0px;
+    }
+
+    .nav-item {
+        padding: 0 20px;
+        background-color: #fff;
+        border-bottom: 1px solid #fff;
+    }
+    
+    .nav-item:not(.has-submenu):not(:last-child):hover {
+        border-bottom: 1px solid #aaa;
+    }
+    
+    .nav-item:not(.submenu-item) {
+        display: inline-block;    
+    }
+    
+    .nav-item.has-submenu::before {
+        content: "\25B9";
+    }
+    
+    .nav-item.has-submenu:hover::before {
+        content: "\25BF";
+    }
+    
+    .nav-item.has-submenu {
+        cursor: default;
+        position: relative;
+    }
+    
+    .nav-item.has-submenu > span.nav-item-text {
+        padding-left: 8px;
+    }
+    
+    .nav-menu-link:hover {
+        text-decoration: none;
+    }
+    
+    .nav-submenu-container {
+        position: absolute;
+        left: 24px;
+        border-left: 1px solid #aaa;
+        border-bottom: 1px solid #aaa;
+    }
+}

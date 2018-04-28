@@ -1,0 +1,11 @@
+{
+    "pageSettings" : {
+        "name" : "Unit Tests"
+    },
+
+    "authentication" : {
+        "groups" : [
+            "developer"
+        ]
+    }
+}

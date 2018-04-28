@@ -1,10 +1,15 @@
 <?php
     class Controller {
         public static function RenderView($viewToRender) {
-            // TODO: Manage Authentication 
-
             // Try to load view-specific configuraiton files
             Controller::LoadConfigurationFile($viewToRender);
+
+            // Manage Authentication : Redirect to Login if necessary
+            Authentication::CheckAuthentication();
+
+            // Set the page heading information
+            echo "<head>";
+            Controller::LoadPageMetaData();
 
             // Include globally available classes
             Controller::LoadUniversalClasses();
@@ -14,26 +19,51 @@
             Controller::LoadViewScript($viewToRender);
             Controller::LoadUniversalStyles();
             Controller::LoadViewStyle($viewToRender);
+            echo "</head>";
 
-            // TODO: Load the Universal Header like navigation and stuff
+            // Load the Universal Header like navigation and stuff
+            echo "<body>";
+            if ($GLOBALS[CONFIG]["pageSettings"]["showNavigation"]) {
+                $filePathForView = $GLOBALS[CONFIG]["folderpath"]["views"].'Navigation.php';
+                if (file_exists($filePathForView)) {
+                    require_once ($filePathForView); 
+                } else {
+                    throw new Exception("Failed to load navigation; Add it to the page config file?");
+                }
+            }
 
             // Load the view
             $filePathForView = $GLOBALS[CONFIG]["folderpath"]["views"].$viewToRender.'.php';
             if (file_exists($filePathForView)) {
-                require_once ($filePathForView); // Executes the associated script in the View folder
+                echo '<div id="view-'.$viewToRender.'" class="view">';
+                require_once ($filePathForView); 
+                echo '</div>';
             } else {
                 throw new Exception("Failed to load view: $viewToRender");
             }
 
-            // TODO: Load the Universal Footer like contact information and copyright
+            // Load the Universal Footer like contact information and copyright
             $filePathForView = $GLOBALS[CONFIG]["folderpath"]["views"].'Footer.php';
             if (file_exists($filePathForView)) {
-                require_once ($filePathForView); // Executes the associated script in the View folder
+                echo "<footer>";
+                require_once ($filePathForView); 
+                echo "</footer>";
             } else {
                 throw new Exception("Failed to load page footer");
             }
+            echo "<body>";
         }
 
+        /** Load the page information */
+        public static function LoadPageMetaData() {
+            echo "<title>".
+                 $GLOBALS[CONFIG]["websiteSettings"]["name"].
+                 (isset($GLOBALS[CONFIG]["pageSettings"]["name"]) ? 
+                 (" | ".$GLOBALS[CONFIG]["pageSettings"]["name"]) : "").
+                 "</title>";
+        }
+
+        /** Load the configuration file */
         public static function LoadConfigurationFile($configurationName) {
             $configurationFilePath = $GLOBALS[CONFIG]["folderpath"]["configurations"].$configurationName.'.json';
             if (file_exists($configurationFilePath)) {
@@ -69,6 +99,10 @@
             if (file_exists($universalScript)) { // My script
                 echo "<script src='/{$universalScript}'></script>";
             } 
+            $universalScript = $GLOBALS[CONFIG]["folderpath"]["scripts"].'navigation.js';
+            if (file_exists($universalScript)) { 
+                echo "<script src='/{$universalScript}'></script>";
+            } 
         }
 
         /** Link universally available styles */
@@ -84,6 +118,10 @@
             }
 
             $universalStyleSheet = $GLOBALS[CONFIG]["folderpath"]["stylesheets"].'site.css';
+            if (file_exists($universalStyleSheet)) {
+                echo "<link rel='stylesheet' type='text/css' href='/{$universalStyleSheet}'>";
+            }
+            $universalStyleSheet = $GLOBALS[CONFIG]["folderpath"]["stylesheets"].'navigation.css';
             if (file_exists($universalStyleSheet)) {
                 echo "<link rel='stylesheet' type='text/css' href='/{$universalStyleSheet}'>";
             }

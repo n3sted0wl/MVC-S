@@ -1,0 +1,11 @@
+{
+    "pageSettings" : {
+        "name" : "Development Page"
+    },
+
+    "authentication" : {
+        "groups" : [
+            "developer"
+        ]
+    }
+}

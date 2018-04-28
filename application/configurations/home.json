@@ -1,0 +1,11 @@
+{
+    "pageSettings" : {
+        "name" : "Home"
+    },
+
+    "authentication" : {
+        "groups" : [
+            "anonymous"
+        ]
+    }
+}
