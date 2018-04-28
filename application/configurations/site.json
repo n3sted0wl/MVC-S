@@ -23,15 +23,15 @@
     },
 
     "navigation": {
-        "Home" : "/",
-        "About" : "/About",
+        "Home"    : "/",
+        "About"   : "/About",
         "Account" : {
-            "Summary" : "/AccountSummary",
+            "Summary"        : "/AccountSummary",
             "Login/Register" : "/Login"
         },
         "Developer Pages" : {
             "Development Page" : "/Dev",
-            "Unit Tests" : "/UnitTests"
+            "Unit Tests"       : "/UnitTests"
         }
     },
 

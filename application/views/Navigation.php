@@ -1,3 +1,3 @@
 <?php
-    echo Services::RenderNavigation();
+    echo Navigation::RenderNavigation();
 ?>
