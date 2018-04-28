@@ -42,19 +42,9 @@
 
     "authentication" : {
         "loginurl"   : "login",
-        "groupviews" : {
-            "anonymous" : [
-            ],
-            "registered" : [ 
-            ],
-            "administrator" : [ 
-            ],
-            "developer" : [
-                "dev",
-                "devinfo",
-                "unittests"
-            ]
-        }
+        "groups" : [
+            "anonymous"
+        ]
     },
 
     "folderpath" : {

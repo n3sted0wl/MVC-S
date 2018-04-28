@@ -5,7 +5,7 @@ $(document).ready(function() {
     var navHeight = $('nav').outerHeight(true);
     var footerHeight = $('footer').outerHeight(true);
     var viewHeight = (windowHeight - navHeight - footerHeight);
-    $('.view').css('min-height', (viewHeight + "px"));
+    $('.view').css('min-height', ((viewHeight - 15) + "px"));
 
     // Set up functionalities
     $('.link-button').on('click', function(event){
