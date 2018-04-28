@@ -6,6 +6,10 @@
         "repo"  : ""
     },
 
+    "websiteSettings" : {
+        "name" : "MWC-S"
+    },
+
     "pageSettings" : {
         "showNavigation" : "true"
     },
@@ -30,13 +34,27 @@
             "Login/Register" : "/Login"
         },
         "Developer Pages" : {
-            "Development Page" : "/Dev",
-            "Unit Tests"       : "/UnitTests"
+            "Dev Info"   : "/DevInfo",
+            "Dev Page"   : "/Dev",
+            "Unit Tests" : "/UnitTests"
         }
     },
 
     "authentication" : {
-        "loginurl" : "/login.php"
+        "loginurl"   : "login",
+        "groupviews" : {
+            "anonymous" : [
+            ],
+            "registered" : [ 
+            ],
+            "administrator" : [ 
+            ],
+            "developer" : [
+                "dev",
+                "devinfo",
+                "unittests"
+            ]
+        }
     },
 
     "folderpath" : {
