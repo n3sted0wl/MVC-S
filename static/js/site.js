@@ -1,5 +1,12 @@
 /* ===================== On Page Load ===================== */
 $(document).ready(function() {
+    // Size the view to fit the footer to the bottom
+    var windowHeight = $(window).height();
+    var navHeight = $('nav').outerHeight(true);
+    var footerHeight = $('footer').outerHeight(true);
+    var viewHeight = (windowHeight - navHeight - footerHeight);
+    $('.view').css('min-height', (viewHeight + "px"));
+
     // Set up functionalities
     $('.link-button').on('click', function(event){
         var targetUrl = $(this).data('url');

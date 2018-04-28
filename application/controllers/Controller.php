@@ -45,7 +45,9 @@
             // Load the Universal Footer like contact information and copyright
             $filePathForView = $GLOBALS[CONFIG]["folderpath"]["views"].'Footer.php';
             if (file_exists($filePathForView)) {
+                echo "<footer>";
                 require_once ($filePathForView); 
+                echo "</footer>";
             } else {
                 throw new Exception("Failed to load page footer");
             }
