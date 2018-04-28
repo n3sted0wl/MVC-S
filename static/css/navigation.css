@@ -1,35 +1,45 @@
 nav {
-    z-index: 1;
-    text-align: center;
-    border-bottom: 1px solid #aaaaaa42;
-}
-
-div.nav-item {
-    padding: 0 8px;
-    cursor: pointer;
-    display: inline-block;
-    color: #aaa;
-}
-
-div.nav-item:hover {
-    color: #130592;
-}
-
-div.nav-submenu {
-    display: none;
-    position: absolute;
-    text-align: left;
-    color: #aaa;
-    box-shadow: 0 0 3px #888;
-}
-
-div.nav-submenu-item {
-    padding: 0 3px;
-    background-color: #fff;
+    z-index: 20;
     font-size: smaller;
 }
 
-div.nav-submenu-item:hover {
-    color: #130592;
+.nav-item {
+    padding: 0 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.nav-item:not(.has-submenu):not(:last-child):hover {
+    border-bottom: 1px solid #aaa;
+}
+
+.nav-item:not(.submenu-item) {
+    display: inline-block;    
+}
+
+.nav-item.has-submenu::before {
+    content: "\25B9";
+}
+
+.nav-item.has-submenu:hover::before {
+    content: "\25BF";
+}
+
+.nav-item.has-submenu {
+    cursor: default;
+}
+
+.nav-item.has-submenu > span.nav-item-text {
+    padding-left: 8px;
+}
+
+.nav-menu-link:hover {
+    text-decoration: none;
+}
+
+.nav-submenu-container {
+    display: none; /* Shows on hover */
+    position: absolute;
+    border-left: 1px solid #aaa;
     border-bottom: 1px solid #aaa;
 }

@@ -80,7 +80,7 @@
                 echo "<script src='/{$universalScript}'></script>";
             } 
             $universalScript = $GLOBALS[CONFIG]["folderpath"]["scripts"].'navigation.js';
-            if (file_exists($universalScript)) { // My script
+            if (file_exists($universalScript)) { 
                 echo "<script src='/{$universalScript}'></script>";
             } 
         }

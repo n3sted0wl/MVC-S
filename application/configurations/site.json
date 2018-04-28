@@ -22,6 +22,23 @@
         }
     },
 
+    "navigation": {
+        "Home" : "/",
+        "About" : "/About",
+        "Account" : {
+            "Summary" : "/AccountSummary",
+            "Login/Register" : "/Login"
+        },
+        "Developer Pages" : {
+            "Development Page" : "/Dev",
+            "Unit Tests" : "/UnitTests"
+        }
+    },
+
+    "authentication" : {
+        "loginurl" : "/login.php"
+    },
+
     "folderpath" : {
         "application"    : "application/",
         "controllers"    : "application/controllers/",
