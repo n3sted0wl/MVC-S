@@ -4,10 +4,14 @@
             // Try to load view-specific configuraiton files
             Controller::LoadConfigurationFile($viewToRender);
 
-            // TODO: Manage Authentication 
+            // Manage Authentication : Redirect to Login if necessary
+            Authentication::CheckAuthentication();
+
+            // Set the page heading information
+            echo "<head>";
+            Controller::LoadPageMetaData();
 
             // Include globally available classes
-            echo "<head>";
             Controller::LoadUniversalClasses();
 
             // Load scripts and styles
@@ -48,6 +52,16 @@
             echo "<body>";
         }
 
+        /** Load the page information */
+        public static function LoadPageMetaData() {
+            echo "<title>".
+                 $GLOBALS[CONFIG]["websiteSettings"]["name"].
+                 (isset($GLOBALS[CONFIG]["pageSettings"]["name"]) ? 
+                 (" | ".$GLOBALS[CONFIG]["pageSettings"]["name"]) : "").
+                 "</title>";
+        }
+
+        /** Load the configuration file */
         public static function LoadConfigurationFile($configurationName) {
             $configurationFilePath = $GLOBALS[CONFIG]["folderpath"]["configurations"].$configurationName.'.json';
             if (file_exists($configurationFilePath)) {
