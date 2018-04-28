@@ -1,0 +1,11 @@
+{
+    "pageSettings" : {
+        "name" : "About"
+    },
+
+    "authentication" : {
+        "groups" : [
+            "anonymous"
+        ]
+    }
+}
